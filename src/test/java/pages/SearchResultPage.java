@@ -1,6 +1,7 @@
 package pages;
 
 import core.WebDriverUtils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,21 +29,25 @@ public class SearchResultPage extends BasePage {
         super();
     }
 
+    @Step
     public List<String> getTitles() {
         return WebDriverUtils.getTextForElementsList(listOfElements);
     }
 
+    @Step
     public Boolean isElemSponsored(String title) {
         String locatorForSearch = String.format("//span[starts-with(@cel_widget_id, 'MAIN-SEARCH_RESULTS') and " +
                 ".//span[contains(text(),'%s')]]//*[text()='Sponsored']",title);
         return WebDriverUtils.isElementExist(driver, locatorForSearch);
     }
 
+    @Step
     public void setMinPrice(int minPrice) {
         minPriceInput.sendKeys(String.valueOf(minPrice));
         acceptPriceRangeBtn.click();
     }
 
+    @Step
     public int getElemPrice(int index) throws ParseException {
         NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
         return format.parse(listOfElementsPrices.get(index).getText()).intValue();
