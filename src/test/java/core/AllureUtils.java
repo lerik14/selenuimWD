@@ -9,6 +9,5 @@ public class AllureUtils {
     @Attachment(value = "Page screenshot", type = "image/png")
     public static byte[] makeScreenshot() {
         return ((TakesScreenshot) WebDriverSingleton.getWebDriver()).getScreenshotAs(OutputType.BYTES);
-
     }
 }
