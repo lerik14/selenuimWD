@@ -14,7 +14,7 @@ public class WebDriverUtils {
         return list.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
-    public static Boolean isElementExist(WebDriver driver, String xpath) {
+    public static Boolean doesElementExist(WebDriver driver, String xpath) {
         try {
             driver.findElement(By.xpath(xpath));
             return true;

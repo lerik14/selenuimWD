@@ -22,6 +22,7 @@ public class SearchPageTests {
 
     @Rule
     public TestRule watchman = new TestWatcher() {
+
         @Override
         protected void failed(Throwable e, Description description) {
            AllureUtils.makeScreenshot();
@@ -43,8 +44,9 @@ public class SearchPageTests {
     public void first10TitlesContainSearchCriteriaTest() {
         header.searchFor("iphone");
         for (int i = 0; i < 10; i++) {
-            Assert.assertTrue(String.format("Title %s should contain iphone", searchResultPage.getTitles().get(i))
-                    ,searchResultPage.getTitles().get(i).toLowerCase(Locale.ROOT).contains("iphone"));
+            String elementTitle = searchResultPage.getTitles().get(i);
+            Assert.assertTrue(String.format("Title %s should contain iphone", elementTitle)
+                    ,elementTitle.toLowerCase(Locale.ROOT).contains("iphone"));
         }
     }
 
@@ -52,8 +54,9 @@ public class SearchPageTests {
     public void first2TitlesAreSponsored() {
         header.searchFor("iphone");
         for (int i = 0; i < 2; i++) {
-            Assert.assertTrue(String.format("Item %s should be sponsored", searchResultPage.getTitles().get(i))
-                    , searchResultPage.isElemSponsored(searchResultPage.getTitles().get(i)));
+            String elementTitle = searchResultPage.getTitles().get(i);
+            Assert.assertTrue(String.format("Item %s should be sponsored", elementTitle)
+                    , searchResultPage.isElemSponsored(elementTitle));
         }
     }
 
@@ -63,9 +66,10 @@ public class SearchPageTests {
         header.searchFor("iphone");
         searchResultPage.setMinPrice(minPrice);
         for (int i = 0; i < 5; i++) {
+            int elementPrice = searchResultPage.getElemPrice(i);
             Assert.assertTrue(String.format("Item %s should cost more %s but it costs %s",
-                    searchResultPage.getTitles().get(i), minPrice, searchResultPage.getElemPrice(i))
-                    ,searchResultPage.getElemPrice(i) >= minPrice);
+                    searchResultPage.getTitles().get(i), minPrice, elementPrice)
+                    ,elementPrice >= minPrice);
         }
     }
 }
