@@ -1,4 +1,4 @@
-package test;
+package test.selenium_tests;
 
 import core.AllureUtils;
 import core.WebDriverSingleton;
