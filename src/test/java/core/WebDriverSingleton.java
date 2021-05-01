@@ -15,6 +15,7 @@ public class WebDriverSingleton {
         if (INSTANCE == null) {
             WebDriverManager.chromedriver().setup();
             INSTANCE = new ChromeDriver();
+            INSTANCE.manage().window().maximize();
         }
         return INSTANCE;
     }

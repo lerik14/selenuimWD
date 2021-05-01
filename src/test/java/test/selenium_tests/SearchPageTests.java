@@ -14,31 +14,10 @@ import pages.SearchResultPage;
 import java.text.ParseException;
 import java.util.Locale;
 
-public class SearchPageTests {
+public class SearchPageTests extends SeleniumTestsBase {
 
-    private WebDriver driver;
     private SearchResultPage searchResultPage = new SearchResultPage();
     private HeaderBlock header = new HeaderBlock();
-
-    @Rule
-    public TestRule watchman = new TestWatcher() {
-
-        @Override
-        protected void failed(Throwable e, Description description) {
-           AllureUtils.makeScreenshot();
-        }
-
-        @Override
-        protected void starting(Description description) {
-            driver = WebDriverSingleton.getWebDriver();
-            driver.get(BasePage.BASE_PAGE_URL);
-        }
-
-        @Override
-        protected void finished(Description description) {
-            WebDriverSingleton.shutDownWebDriver();
-        }
-    };
 
     @Test
     public void first10TitlesContainSearchCriteriaTest() {
