@@ -1,13 +1,7 @@
 package test.selenium_tests;
 
-import core.AllureUtils;
-import core.WebDriverSingleton;
-import org.junit.*;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
-import org.openqa.selenium.WebDriver;
-import pages.BasePage;
+import org.junit.Assert;
+import org.junit.Test;
 import pages.HeaderBlock;
 import pages.SearchResultPage;
 
@@ -40,7 +34,7 @@ public class SearchPageTests extends SeleniumTestsBase {
     }
 
     @Test
-    public void checkMinPriceRangeForFirst5Items() throws ParseException {
+    public void checkMinPriceRangeForFirst5Items() {
         int minPrice = 400;
         header.searchFor("iphone");
         searchResultPage.setMinPrice(minPrice);

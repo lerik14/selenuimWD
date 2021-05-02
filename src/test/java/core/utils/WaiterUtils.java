@@ -1,4 +1,4 @@
-package core;
+package core.utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,13 +16,9 @@ public class WaiterUtils {
 
     public static void waitForPageLoad(WebDriver driver) {
         Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver wdriver) {
-                return ((JavascriptExecutor) driver).executeScript(
-                        "return document.readyState"
-                ).equals("complete");
-            }
-        });
+        wait.until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
+                "return document.readyState"
+        ).equals("complete"));
     }
 
     public static void waitOneOfTwoElementsPresence(WebDriver driver, WebElement element1, WebElement element2) {

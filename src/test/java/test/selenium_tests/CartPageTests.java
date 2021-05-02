@@ -1,6 +1,6 @@
-package test;
+package test.selenium_tests;
 
-import core.WaiterUtils;
+import core.utils.WaiterUtils;
 import org.junit.Test;
 import pages.*;
 
@@ -20,7 +20,7 @@ public class CartPageTests extends SeleniumTestsBase {
     private CartPage cartPage = new CartPage();
 
     @Test
-    public void checkSubtotalValuesInCart() throws ParseException, InterruptedException {
+    public void checkSubtotalValuesInCart() throws InterruptedException {
         List<Double> listOfPrices = new ArrayList<>();
         List<String> listOfSearchItems = Arrays.asList("Sweese Porcelain Tea Mug with Infuser and Lid"
                 , "Choary Eco-friendly Unbreakable Reusable Drinking Cup"
@@ -40,10 +40,10 @@ public class CartPageTests extends SeleniumTestsBase {
         double expectedSubtotalPrice = listOfPrices.stream().reduce(0.0, Double::sum);
         header.goToCart();
         WaiterUtils.waitForPageLoad(driver);
+
         assertEquals(String.format("Subtotal price on page should be %s but it is %s",expectedSubtotalPrice, cartPage.getSubtotalPrice())
                 ,expectedSubtotalPrice, cartPage.getSubtotalPrice(), 0.01);
         assertTrue(String.format("Subtotal number of items on page should be %s but it is %s",listOfSearchItems.size(), cartPage.getSubtotalItems())
                 ,cartPage.getSubtotalItems().contains(String.valueOf(listOfSearchItems.size())));
     }
-
 }

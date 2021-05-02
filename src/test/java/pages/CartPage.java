@@ -1,6 +1,6 @@
 package pages;
 
-import core.ItemUtils;
+import core.utils.ItemUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,5 +26,4 @@ public class CartPage extends BasePage {
     public String getSubtotalItems() {
         return subtotalItems.getText();
     }
-
 }

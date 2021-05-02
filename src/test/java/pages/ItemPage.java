@@ -1,7 +1,7 @@
 package pages;
 
-import core.ItemUtils;
-import core.WaiterUtils;
+import core.utils.ItemUtils;
+import core.utils.WaiterUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,12 +26,11 @@ public class ItemPage extends BasePage {
     }
 
     @Step
-    public double getItemPrice() throws ParseException {
+    public double getItemPrice() {
        return ItemUtils.parseItemPrice(itemPrice.getText());
     }
 
     public void waitPriceIsVisible() {
         WaiterUtils.waitElementToBeVisible(driver, itemPrice);
     }
-
 }

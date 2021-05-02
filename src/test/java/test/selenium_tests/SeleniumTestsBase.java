@@ -1,6 +1,6 @@
-package test;
+package test.selenium_tests;
 
-import core.AllureUtils;
+import core.utils.AllureUtils;
 import core.WebDriverSingleton;
 import org.junit.Rule;
 import org.junit.rules.TestRule;

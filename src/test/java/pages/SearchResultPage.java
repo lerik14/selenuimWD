@@ -1,7 +1,7 @@
 package pages;
 
-import core.ItemUtils;
-import core.WebDriverUtils;
+import core.utils.ItemUtils;
+import core.utils.WebDriverUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,7 +49,7 @@ public class SearchResultPage extends BasePage {
     }
 
     @Step
-    public int getElemPrice(int index) throws ParseException {
+    public int getElemPrice(int index){
        return (int) ItemUtils.parseItemPrice(listOfElementsPrices.get(index).getText());
     }
 

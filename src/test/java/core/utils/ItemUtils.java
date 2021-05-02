@@ -1,9 +1,4 @@
-package core;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+package core.utils;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -20,7 +15,4 @@ public class ItemUtils {
             return -1;
         }
     }
-
-
-
 }
