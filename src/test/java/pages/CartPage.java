@@ -10,7 +10,7 @@ public class CartPage extends BasePage {
     @FindBy(xpath = "//span[@id='sc-subtotal-amount-activecart']/span[@class='a-size-medium a-color-base sc-price sc-white-space-nowrap']")
     private WebElement subtotalPrice;
 
-    @FindBy(xpath = "//span[@id='sc-subtotal-label-activecart']") //Subtotal (2 items):
+    @FindBy(xpath = "//span[@id='sc-subtotal-label-activecart']")
     private WebElement subtotalItems;
 
     public CartPage() {
@@ -23,7 +23,7 @@ public class CartPage extends BasePage {
     }
 
     @Step
-    public String getSubtotalItems() {
+    public String getTotalNumberOfItemsInCart() {
         return subtotalItems.getText();
     }
 }

@@ -14,7 +14,7 @@ public class SearchResultPage extends BasePage {
     @FindBy(xpath = "//span[@class='a-size-medium a-color-base a-text-normal']")
     private List<WebElement> listOfElementsInListView;
 
-    @FindBy(xpath = "//div[@class='sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col sg-col-4-of-20']//span[@class='a-size-base-plus a-color-base a-text-normal']")
+    @FindBy(xpath = "//span[@class='a-size-base-plus a-color-base a-text-normal']")
     private List<WebElement> listOfElementsInGridView;
 
     @FindBy(xpath = "//*[@id='low-price']")
@@ -31,7 +31,7 @@ public class SearchResultPage extends BasePage {
     }
 
     @Step
-    public List<String> getTitles() {
+    public List<String> getTitlesFromListView() {
         return WebDriverUtils.getTextForElementsList(listOfElementsInListView);
     }
 

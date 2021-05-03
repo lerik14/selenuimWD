@@ -11,8 +11,7 @@ public class ItemUtils {
         try {
             return format.parse(price.replace("$", "")).doubleValue();
         } catch (ParseException e) {
-            System.out.println("Unable to parse price " + price);
-            return -1;
+            throw new IllegalArgumentException("Unable to parse price " + price);
         }
     }
 }

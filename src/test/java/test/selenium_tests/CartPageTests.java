@@ -4,7 +4,6 @@ import core.utils.WaiterUtils;
 import org.junit.Test;
 import pages.*;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,9 +21,7 @@ public class CartPageTests extends SeleniumTestsBase {
     @Test
     public void checkSubtotalValuesInCart() throws InterruptedException {
         List<Double> listOfPrices = new ArrayList<>();
-        List<String> listOfSearchItems = Arrays.asList("Sweese Porcelain Tea Mug with Infuser and Lid"
-                , "Choary Eco-friendly Unbreakable Reusable Drinking Cup"
-                , "Mora Ceramic Dinner Plates Set of 6");
+        List<String> listOfSearchItems = Arrays.asList("mug", "cup", "set of plates");
 
         for (String listOfSearchItem : listOfSearchItems) {
             header.searchFor(listOfSearchItem);
@@ -33,7 +30,7 @@ public class CartPageTests extends SeleniumTestsBase {
             itemPage.waitPriceIsVisible();
             listOfPrices.add(itemPage.getItemPrice());
             itemPage.addItemToCart();
-            Thread.sleep(2000); // Hardcode timeout because of
+            Thread.sleep(2000); // Hardcode timeout because of unpredictable amazon behavior
             driver.get(BasePage.BASE_PAGE_URL);
         }
 
@@ -41,9 +38,9 @@ public class CartPageTests extends SeleniumTestsBase {
         header.goToCart();
         WaiterUtils.waitForPageLoad(driver);
 
-        assertEquals(String.format("Subtotal price on page should be %s but it is %s",expectedSubtotalPrice, cartPage.getSubtotalPrice())
-                ,expectedSubtotalPrice, cartPage.getSubtotalPrice(), 0.01);
-        assertTrue(String.format("Subtotal number of items on page should be %s but it is %s",listOfSearchItems.size(), cartPage.getSubtotalItems())
-                ,cartPage.getSubtotalItems().contains(String.valueOf(listOfSearchItems.size())));
+        assertEquals(String.format("Subtotal price on page should be %s but it is %s", expectedSubtotalPrice, cartPage.getSubtotalPrice()),
+                expectedSubtotalPrice, cartPage.getSubtotalPrice(), 0.01);
+        assertTrue(String.format("Subtotal number of items on page should be %s but it is %s", listOfSearchItems.size(), cartPage.getTotalNumberOfItemsInCart()),
+                cartPage.getTotalNumberOfItemsInCart().contains(String.valueOf(listOfSearchItems.size())));
     }
 }

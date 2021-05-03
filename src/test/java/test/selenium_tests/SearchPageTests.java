@@ -5,7 +5,6 @@ import org.junit.Test;
 import pages.HeaderBlock;
 import pages.SearchResultPage;
 
-import java.text.ParseException;
 import java.util.Locale;
 
 public class SearchPageTests extends SeleniumTestsBase {
@@ -17,7 +16,7 @@ public class SearchPageTests extends SeleniumTestsBase {
     public void first10TitlesContainSearchCriteriaTest() {
         header.searchFor("iphone");
         for (int i = 0; i < 10; i++) {
-            String elementTitle = searchResultPage.getTitles().get(i);
+            String elementTitle = searchResultPage.getTitlesFromListView().get(i);
             Assert.assertTrue(String.format("Title %s should contain iphone", elementTitle)
                     ,elementTitle.toLowerCase(Locale.ROOT).contains("iphone"));
         }
@@ -27,7 +26,7 @@ public class SearchPageTests extends SeleniumTestsBase {
     public void first2TitlesAreSponsored() {
         header.searchFor("iphone");
         for (int i = 0; i < 2; i++) {
-            String elementTitle = searchResultPage.getTitles().get(i);
+            String elementTitle = searchResultPage.getTitlesFromListView().get(i);
             Assert.assertTrue(String.format("Item %s should be sponsored", elementTitle)
                     , searchResultPage.isElemSponsored(elementTitle));
         }
@@ -41,7 +40,7 @@ public class SearchPageTests extends SeleniumTestsBase {
         for (int i = 0; i < 5; i++) {
             int elementPrice = searchResultPage.getElemPrice(i);
             Assert.assertTrue(String.format("Item %s should cost more %s but it costs %s",
-                    searchResultPage.getTitles().get(i), minPrice, elementPrice)
+                    searchResultPage.getTitlesFromListView().get(i), minPrice, elementPrice)
                     ,elementPrice >= minPrice);
         }
     }
