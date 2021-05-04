@@ -57,12 +57,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20210307</version>
-        </dependency>
-
-        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>2.13.1</version>
@@ -113,6 +107,8 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.1/aspectjweaver-1.9.1.jar"
                     </argLine>
+                    <forkCount>3</forkCount>
+                    <reuseForks>true</reuseForks>
                     <properties>
                         <property>
                             <name>listener</name>
