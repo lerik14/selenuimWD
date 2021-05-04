@@ -9,7 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.time.Duration;
 
 public class CalculatorPage {
+
     protected AndroidDriver<MobileElement> driver;
+    private String digitId = "com.google.android.calculator:id/digit_";
 
     @FindBy(id = "com.google.android.calculator:id/op_add")
     private MobileElement sumBtn;
@@ -29,28 +31,28 @@ public class CalculatorPage {
     }
 
     public void performSum(String ... numbers) {
-        for (String number : numbers) {
-            clickOnDigit(number);
-            if (number.equals(numbers[numbers.length - 1])) {
-                equalBtn.click();
-            } else {
-                sumBtn.click();
-            }
+        for (int i = 0; i < numbers.length - 1; i++) {
+            enterNumber(numbers[i]);
+            sumBtn.click();
         }
+        enterNumber(numbers[numbers.length - 1]);
+        equalBtn.click();
     }
 
     public int getResult() {
+        // In calculator negative number uses minus sign and because of this parseInt throws exception.
+        // That is why here is minus sign is replaced on hyphen
         String text = result.getText().replace('−','-');
         return Integer.parseInt(text);
     }
 
-    public void clickOnDigit(String number) {
+    public void enterNumber(String number) {
         char[] digits = number.toCharArray();
         for (char digit : digits) {
             if (digit == '-') {
                 subtractionBtn.click();
             } else {
-                driver.findElementById("com.google.android.calculator:id/digit_" + digit).click();
+                driver.findElementById(digitId + digit).click();
             }
         }
     }

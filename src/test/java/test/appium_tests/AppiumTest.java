@@ -42,7 +42,7 @@ public class AppiumTest {
     @Parameters(method = "sumTestData")
     public void sumTest(int expectedResult, String ... numbers) throws InterruptedException {
         CalculatorPage calculatorPage = new CalculatorPage(driver);
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         calculatorPage.performSum(numbers);
         Assert.assertEquals(expectedResult, calculatorPage.getResult());
     }
@@ -53,11 +53,5 @@ public class AppiumTest {
                 new Object[]{-5, "-5", "0"},
                 new Object[]{75, "15", "60"}
         };
-    }
-
-    @Test
-    public void qwe() {
-        System.out.println((int )'−');
-        System.out.println((int) '-');
     }
 }
