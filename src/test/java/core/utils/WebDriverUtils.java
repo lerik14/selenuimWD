@@ -1,4 +1,4 @@
-package core;
+package core.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -22,5 +22,4 @@ public class WebDriverUtils {
             return false;
         }
     }
-
 }
