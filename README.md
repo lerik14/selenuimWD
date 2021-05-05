@@ -1,4 +1,4 @@
-# selenuimWD
+# Tes_automation
 
 ## Run tests
 - Open a terminal or command prompt
