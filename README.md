@@ -1,4 +1,4 @@
-# Tes_automation
+# Test_automation
 
 ## Run tests
 - Open a terminal or command prompt
